@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fe97723d3b77944baedfa38d45e640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  maxForce: 10
+  accelerationTime: 1
+  lifeTime: 5
+  snakeFrequency: 5
+  snakeAmplitude: 3
 --- !u!50 &5999132463959437151
 Rigidbody2D:
   serializedVersion: 4
