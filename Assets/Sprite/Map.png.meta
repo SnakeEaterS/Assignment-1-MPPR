@@ -709,9 +709,9 @@ TextureImporter:
       name: tile_29
       rect:
         serializedVersion: 2
-        x: 447
+        x: 446
         y: 128
-        width: 64
+        width: 65
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
