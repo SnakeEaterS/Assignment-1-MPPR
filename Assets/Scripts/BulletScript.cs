@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    private Vector3 mousePos;
-    private Camera mainCam;
-    private Rigidbody2D rb;
+    
+
     public float maxForce = 10f; // Maximum speed
     public float accelerationTime = 1f; // Time to reach max speed
     public float lifeTime = 5f; // Bullet lifetime in seconds
     public float snakeFrequency = 5f; // Frequency of the snake oscillation
     public float snakeAmplitude = 0.5f; // Amplitude of the snake oscillation
 
+    private Vector3 mousePos;
+    private Camera mainCam;
+    private Rigidbody2D rb;
     private float currentTime = 0f; // Tracks the time for acceleration
     private Vector2 direction;
     private Vector2 perpendicular;
