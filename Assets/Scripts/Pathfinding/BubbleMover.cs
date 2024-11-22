@@ -24,7 +24,7 @@ public class BubbleMover : MonoBehaviour
             // Optional: Rotate sprite to face direction
             if (t < 1)
             {
-                Vector2 direction = bezierCurve.GetPoint(t + 0.01f) - (Vector2)transform.position;
+                Vector2 direction = bezierCurve.GetPoint(t + 0.01f) - (Vector3)transform.position;
                 if (direction != Vector2.zero)
                     transform.up = direction; // Align sprite's up direction with movement
             }
