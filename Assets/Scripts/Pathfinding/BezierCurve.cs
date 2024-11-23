@@ -6,19 +6,39 @@ public class BezierCurve : MonoBehaviour
 {
     public Transform[] controlPoints; // Array of control points
 
-    private Transform P0, P1, P2, P3;
-
+    private Transform p1, p2, p3, p4;
     void Awake()
     {
         // Find all GameObjects with the tag "Point"
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("Point");
 
-        // Initialize the controlPoints array with the found Transform components
+        // Sort using natural sorting
+        System.Array.Sort(pointObjects, (a, b) =>
+        {
+            return ExtractNumber(a.name).CompareTo(ExtractNumber(b.name));
+        });
+
+        // Initialize the controlPoints array with the sorted Transform components
         controlPoints = new Transform[pointObjects.Length];
         for (int i = 0; i < pointObjects.Length; i++)
         {
             controlPoints[i] = pointObjects[i].transform;
         }
+
+        // Debugging: Log the order of control points
+        Debug.Log("Control Points Order:");
+        foreach (Transform controlPoint in controlPoints)
+        {
+            Debug.Log(controlPoint.name);
+        }
+    }
+
+    // Helper method to extract the numeric part of a string
+    private int ExtractNumber(string name)
+    {
+        // Assumes the name has a format like "P1", "P2", ..., "P12"
+        string numberPart = System.Text.RegularExpressions.Regex.Match(name, @"\d+").Value;
+        return int.Parse(numberPart);
     }
 
     public Vector3 GetPoint(float t)
