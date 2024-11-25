@@ -6,8 +6,9 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePos;
-    public GameObject bullet;
+    public Transform bullet;
     public Transform bulletTransform;
+    public Transform bulletParent;
     public bool canFire;
     private float timer;
     public float timeBetweenFiring;
@@ -49,7 +50,11 @@ public class Shooting : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             canFire  =false;
-            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Transform bulletPrefab = Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            if (bulletParent != null)
+            {
+                bulletPrefab.SetParent(bulletParent);
+            }
         }
     }
 }

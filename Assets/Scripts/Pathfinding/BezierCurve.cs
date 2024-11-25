@@ -6,7 +6,6 @@ public class BezierCurve : MonoBehaviour
 {
     public Transform[] controlPoints; // Array of control points
 
-    private Transform p1, p2, p3, p4;
     void Awake()
     {
         // Find all GameObjects with the tag "Point"
@@ -24,13 +23,6 @@ public class BezierCurve : MonoBehaviour
         {
             controlPoints[i] = pointObjects[i].transform;
         }
-
-        // Debugging: Log the order of control points
-        Debug.Log("Control Points Order:");
-        foreach (Transform controlPoint in controlPoints)
-        {
-            Debug.Log(controlPoint.name);
-        }
     }
 
     // Helper method to extract the numeric part of a string
@@ -43,19 +35,25 @@ public class BezierCurve : MonoBehaviour
 
     public Vector3 GetPoint(float t)
     {
+        if (controlPoints == null || controlPoints.Length < 4)
+        {
+            Debug.LogWarning("Insufficient control points to calculate Bézier curve.");
+            return Vector3.zero;
+        }
+
         int numSegments = (controlPoints.Length - 1) / 3;
-        int segmentIndex = Mathf.FloorToInt(t * numSegments);
+        int segmentIndex = Mathf.Clamp(Mathf.FloorToInt(t * numSegments), 0, numSegments - 1);
         float segmentT = (t * numSegments) - segmentIndex;
 
         int p0Index = segmentIndex * 3;
-        int p1Index = p0Index + 1;
-        int p2Index = p1Index + 1;
-        int p3Index = p2Index + 1;
+        int p1Index = Mathf.Clamp(p0Index + 1, 0, controlPoints.Length - 1);
+        int p2Index = Mathf.Clamp(p1Index + 1, 0, controlPoints.Length - 1);
+        int p3Index = Mathf.Clamp(p2Index + 1, 0, controlPoints.Length - 1);
 
-        Vector2 p0 = controlPoints[p0Index].position;
-        Vector2 p1 = controlPoints[p1Index].position;
-        Vector2 p2 = controlPoints[p2Index].position;
-        Vector2 p3 = controlPoints[p3Index].position;
+        Vector3 p0 = controlPoints[p0Index].position;
+        Vector3 p1 = controlPoints[p1Index].position;
+        Vector3 p2 = controlPoints[p2Index].position;
+        Vector3 p3 = controlPoints[p3Index].position;
 
         float u = 1 - segmentT;
         float tt = segmentT * segmentT;
@@ -63,12 +61,21 @@ public class BezierCurve : MonoBehaviour
         float uuu = uu * u;
         float ttt = tt * segmentT;
 
-        Vector2 point2D = (uuu * p0) + (3 * uu * segmentT * p1) + (3 * u * tt * p2) + (ttt * p3);
+        return (uuu * p0) + (3 * uu * segmentT * p1) + (3 * u * tt * p2) + (ttt * p3);
+    }
 
-        // Create a Vector3 with the Z-axis set to -1
-        Vector3 point = new Vector3(point2D.x, point2D.y, -1);
-
-        return point;
+    public float GetLength(int numSamples = 100)
+    {
+        float length = 0f;
+        Vector3 previousPoint = GetPoint(0f);
+        for (int i = 1; i <= numSamples; i++)
+        {
+            float t = (float)i / numSamples;
+            Vector3 currentPoint = GetPoint(t);
+            length += Vector3.Distance(previousPoint, currentPoint);
+            previousPoint = currentPoint;
+        }
+        return length;
     }
 
     void OnDrawGizmos()
