@@ -13,6 +13,12 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float timeBetweenFiring;
 
+    public enum FireType { Straight, Snake } // Firing modes
+    public FireType fireType = FireType.Straight; // Default firing type
+
+    public float snakeFrequency = 5f; // Frequency of snake oscillation
+    public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +43,7 @@ public class Shooting : MonoBehaviour
         // Apply the rotation to the Player
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
+        // Handle firing cooldown
         if (!canFire)
         {
             timer += Time.deltaTime;
@@ -47,15 +54,36 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        // Switch firing types based on key presses
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            canFire  =false;
+            fireType = FireType.Straight;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            fireType = FireType.Snake;
+        }
+
+        // Handle firing when the mouse button is held
+        if (Input.GetMouseButton(0) && canFire)
+        {
+            canFire = false;
+
+            // Spawn the bullet
             Transform bulletPrefab = Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             if (bulletParent != null)
             {
                 bulletPrefab.SetParent(bulletParent);
             }
+
+            // Configure the bullet based on the firing type
+            BulletScript bulletScript = bulletPrefab.GetComponent<BulletScript>();
+            if (bulletScript != null)
+            {
+                bulletScript.fireType = fireType; // Set the firing type
+                bulletScript.snakeFrequency = snakeFrequency;
+                bulletScript.snakeAmplitude = snakeAmplitude;
+            }
         }
     }
 }
-
