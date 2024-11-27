@@ -12,6 +12,7 @@ public class BulletScript : MonoBehaviour
     public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
 
     private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
     private Vector2 direction;
     private Vector2 perpendicular;
     private float currentTime = 0f;
@@ -19,6 +20,7 @@ public class BulletScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
 
         // Calculate the direction the bullet will move
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -52,6 +54,23 @@ public class BulletScript : MonoBehaviour
             float oscillation = Mathf.Sin(Time.time * snakeFrequency) * snakeAmplitude;
             Vector2 snakeVelocity = direction * force + perpendicular * oscillation;
             rb.velocity = snakeVelocity;
+
+            
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (fireType == Shooting.FireType.Straight)
+            {
+                
+            }
+            else
+            {
+
+            }
         }
     }
 }
