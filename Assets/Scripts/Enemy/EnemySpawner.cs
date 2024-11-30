@@ -28,11 +28,11 @@ public class EnemySpawner : MonoBehaviour
             // Randomly select which enemy to spawn
             if (Random.value < 0.5f)
             {
-                SpawnEnemy(enemyPrefab1, 5f, 50); // Type 1 enemy with speed 2 and health 50
+                SpawnEnemy(enemyPrefab1); // Type 1 enemy with speed 2 and health 50
             }
             else
             {
-                SpawnEnemy(enemyPrefab2, 2.5f, 100); // Type 2 enemy with speed 2 and health 100
+                SpawnEnemy(enemyPrefab2); // Type 2 enemy with speed 2 and health 100
             }
 
             // Decrease the spawn interval, ensuring it doesn't go below the minimum
@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(Transform prefab, float speed, int health)
+    private void SpawnEnemy(Transform prefab)
     {
         // Instantiate the enemy at the start of the Bézier curve
         Transform enemyTransform = Instantiate(prefab, bezierCurve.GetPoint(0), Quaternion.identity);
@@ -57,7 +57,5 @@ public class EnemySpawner : MonoBehaviour
         // Configure the enemy's properties
         Enemy enemyScript = enemyTransform.GetComponent<Enemy>();
         enemyScript.bezierCurve = bezierCurve;
-        enemyScript.speed = speed;
-        enemyScript.health = health;
     }
 }

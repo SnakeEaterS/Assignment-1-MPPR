@@ -17,7 +17,6 @@ public class BulletScript : MonoBehaviour
     private Vector2 perpendicular;
     private float currentTime = 0f;
     private SpriteRenderer spriteRenderer;
-
     private Shooting shooting;  // Reference to the Shooting script
 
     void Start()
@@ -59,7 +58,6 @@ public class BulletScript : MonoBehaviour
             Vector2 snakeVelocity = direction * force + perpendicular * oscillation;
             rb.velocity = snakeVelocity;
 
-
         }
     }
 
@@ -76,14 +74,12 @@ public class BulletScript : MonoBehaviour
                 {
                     int damage1 = 10;
                     enemy.TakeDamage(damage1);
-                    Debug.Log($"{collision.gameObject.name} took {damage1} damage from Straight fire. Remaining health: {enemy.health}");
                     Destroy(gameObject);
                 }
                 else
                 {
                     int damage2 = 5;
                     enemy.TakeDamage(damage2);
-                    Debug.Log($"{collision.gameObject.name} took {damage2} damage from Snake fire. Remaining health: {enemy.health}");
                 }
             }
         }
