@@ -63,13 +63,19 @@ public class BulletScript : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            Enemy enemy = collision.GetComponent<Enemy>();
             if (fireType == Shooting.FireType.Straight)
             {
-                
+                int damage1 = 10;
+                enemy.TakeDamage(damage1);
+                Debug.Log($"{collision.gameObject.name} took {damage1} damage from Straight fire. Remaining health: {enemy.health}");
+                Destroy(gameObject);
             }
             else
             {
-
+                int damage2 = 5;
+                enemy.TakeDamage(damage2);
+                Debug.Log($"{collision.gameObject.name} took {damage2} damage from Snake fire. Remaining health: {enemy.health}");
             }
         }
     }

@@ -28,11 +28,11 @@ public class EnemySpawner : MonoBehaviour
             // Randomly select which enemy to spawn
             if (Random.value < 0.5f)
             {
-                SpawnEnemy(enemyPrefab1, 2f, 50); // Type 1 enemy with speed 2 and health 50
+                SpawnEnemy(enemyPrefab1, 2f, 100); // Type 1 enemy with speed 2 and health 50
             }
             else
             {
-                SpawnEnemy(enemyPrefab2, 4f, 100); // Type 2 enemy with speed 4 and health 100
+                SpawnEnemy(enemyPrefab2, 4f, 50); // Type 2 enemy with speed 4 and health 100
             }
 
             // Decrease the spawn interval, ensuring it doesn't go below the minimum
