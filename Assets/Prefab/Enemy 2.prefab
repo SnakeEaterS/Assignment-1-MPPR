@@ -254,7 +254,7 @@ MonoBehaviour:
   speed: 2
   health: 50
   maxHealth: 50
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 8768591582917449676}
 --- !u!58 &73154456185642408
 CircleCollider2D:
   m_ObjectHideFlags: 0

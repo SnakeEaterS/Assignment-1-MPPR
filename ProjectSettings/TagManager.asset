@@ -10,6 +10,7 @@ TagManager:
   - Blue Enemy
   - Red Bullet
   - Blue Bullet
+  - Powerup
   layers:
   - Default
   - TransparentFX

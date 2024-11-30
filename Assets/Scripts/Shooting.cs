@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public static Shooting Instance;  // Static reference to the instance
+
     private Camera mainCam;
     private Vector3 mousePos;
     public Transform bullet1; // Red bullet
@@ -16,13 +18,17 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float timeBetweenFiring;
 
+    public bool powerUpObtained = false; // Checks if the player has collected a power-up
+
     public enum FireType { Straight, Snake } // Firing modes
     public FireType fireType = FireType.Straight; // Default firing type
 
     public float snakeFrequency = 5f; // Frequency of snake oscillation
     public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
-
-    // Start is called before the first frame update
+    void Awake()
+    {
+        Instance = this;  // Set this instance as the singleton
+    }
     void Start()
     {
         mainCam = Camera.main; // Get the main camera
@@ -99,5 +105,30 @@ public class Shooting : MonoBehaviour
                 bulletScript.snakeAmplitude = snakeAmplitude;
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (powerUpObtained == true)
+        {
+            StartCoroutine(Powerup());
+            powerUpObtained = false;
+        }
+    }
+
+    // Coroutine to speed up firing rate by 2x for 5 seconds, when a player activates the power-up
+    public IEnumerator Powerup()
+    {
+
+        float currentShootRate = timeBetweenFiring;
+        float newShootRate = (currentShootRate / 2);
+
+        timeBetweenFiring = newShootRate;
+
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(5f);
+
+        // Restore the original firing interval
+        timeBetweenFiring = currentShootRate;
     }
 }

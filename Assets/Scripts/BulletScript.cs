@@ -16,11 +16,15 @@ public class BulletScript : MonoBehaviour
     private Vector2 direction;
     private Vector2 perpendicular;
     private float currentTime = 0f;
+    private SpriteRenderer spriteRenderer;
+
+    private Shooting shooting;  // Reference to the Shooting script
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
+        shooting = Shooting.Instance;
 
         // Calculate the direction the bullet will move
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -37,7 +41,7 @@ public class BulletScript : MonoBehaviour
         }
 
         // Destroy the bullet after its lifetime expires
-        // Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
@@ -55,7 +59,7 @@ public class BulletScript : MonoBehaviour
             Vector2 snakeVelocity = direction * force + perpendicular * oscillation;
             rb.velocity = snakeVelocity;
 
-            
+
         }
     }
 
@@ -83,5 +87,13 @@ public class BulletScript : MonoBehaviour
                 }
             }
         }
+
+        else if (collision.CompareTag("Powerup")) // Power up increases firing rate by 2x for 5 seconds
+        {
+            shooting.powerUpObtained = true;
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }
+    
