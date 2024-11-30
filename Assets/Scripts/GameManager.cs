@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
@@ -29,11 +30,16 @@ private void Awake()
         }
     }
 
- 
+
 
     public void PlayerLose()
     {
         Debug.Log("Player has lost the game!");
-        // Implement loss logic (e.g., show Game Over screen)
+        // Save the score to PlayerPrefs
+        PlayerPrefs.SetInt("PlayerScore", score);
+        PlayerPrefs.Save(); // Save to disk
+                            // Load the Game Over scene (or another scene that shows the score)
+        SceneManager.LoadScene(2);
     }
+
 }
