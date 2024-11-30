@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public Text scoreUI;
+    public int score;
 
-    private void Awake()
+
+    public void UpdateScore(int newScore)
+    {
+        score = newScore;
+        scoreUI.text = score.ToString(); // Update the score UI
+    }
+
+private void Awake()
     {
         if (Instance == null)
         {
@@ -17,6 +28,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); // Enforce singleton pattern
         }
     }
+
+ 
 
     public void PlayerLose()
     {

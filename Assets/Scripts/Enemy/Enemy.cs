@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class Enemy : MonoBehaviour
     public int health;             // Health points for the enemy
     public int maxHealth;
     private float t = 0f;          // Progress along the curve (0 to 1)
-   
     [SerializeField] HealthBar healthBar;
+ 
 
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        
     }
 
     void Start()
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour
 
         // Update the position based on the curve
         transform.position = bezierCurve.GetPoint(t);
+
     }
 
     public void TakeDamage(int damage)
@@ -60,8 +63,11 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        GameManager.Instance.score++; // Update score directly here
+        GameManager.Instance.UpdateScore(GameManager.Instance.score);
         Destroy(gameObject); // Destroy the enemy when health reaches zero
     }
+
 
     private void OnReachEnd()
     {
