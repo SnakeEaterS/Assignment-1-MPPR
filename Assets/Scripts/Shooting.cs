@@ -6,25 +6,26 @@ public class Shooting : MonoBehaviour
 {
     public static Shooting Instance;  // Static reference to the instance
 
-    private Camera mainCam;
-    private Vector3 mousePos;
     public Transform bullet1; // Red bullet
     public Transform bullet2; // Blue bullet
-    private Transform currentBullet; // Current bullet prefab
-
     public Transform bulletTransform;
     public Transform bulletParent;
-    public bool canFire;
-    private float timer;
-    public float timeBetweenFiring;
 
+    private Camera mainCam;
+    private Vector3 mousePos;
+    private Transform currentBullet; // Current bullet prefab
+
+    private float timer;
+
+    public bool canFire;
     public bool powerUpObtained = false; // Checks if the player has collected a power-up
+    public float timeBetweenFiring;
+    public float snakeFrequency = 5f; // Frequency of snake oscillation
+    public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
 
     public enum FireType { Straight, Snake } // Firing modes
     public FireType fireType = FireType.Straight; // Default firing type
 
-    public float snakeFrequency = 5f; // Frequency of snake oscillation
-    public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
     void Awake()
     {
         Instance = this;  // Set this instance as the singleton

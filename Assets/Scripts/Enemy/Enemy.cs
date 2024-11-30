@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float speed;            // Speed along the curve
     public int health;             // Health points for the enemy
     public int maxHealth;
+
     private float t = 0f;          // Progress along the curve (0 to 1)
     [SerializeField] HealthBar healthBar;
  
