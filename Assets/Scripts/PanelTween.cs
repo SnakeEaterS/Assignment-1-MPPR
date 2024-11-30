@@ -26,6 +26,9 @@ public class PanelTween : MonoBehaviour
         // of the window.
         onScreenPosition = new Vector3(0f, 0f, panel.localPosition.z);
         offScreenPosition = new Vector3(panel.localPosition.x, Screen.height, panel.localPosition.z);
+
+        panel.localPosition = offScreenPosition; // Start off-screen
+        ShowPanel();
     }
 
     // Create a button, with the label Toggle Panel. You need to link the button's
