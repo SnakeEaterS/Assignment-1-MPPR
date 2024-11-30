@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 275dbefb4508f7a418839f271e20a012
+guid: 9f6bc52203b1e4043a49c61bd10783e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Button-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 195
+        width: 332
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebcdf5a1d181d44ea93c23bf16e7505
+      internalID: 78261232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 38
+        width: 196
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f39acfe318ebd4ea528c3d7941dcd9
+      internalID: -400328061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 211
+        width: 196
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b889b50c5bae1141a095e00e1f885aa
+      internalID: 1915583254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 20
+        width: 333
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afb73a55e5507949b2b2e65551b761e
+      internalID: -2089459477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +216,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Button-removebg-preview_0: 78261232
+      Button-removebg-preview_1: -400328061
+      Button-removebg-preview_2: 1915583254
+      Button-removebg-preview_3: -2089459477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -35,11 +35,25 @@ private void Awake()
     public void PlayerLose()
     {
         Debug.Log("Player has lost the game!");
-        // Save the score to PlayerPrefs
+
+        // Retrieve the current high score from PlayerPrefs (default to 0 if not set)
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        // Check if the current score is higher than the saved high score
+        if (score > highScore)
+        {
+            // Update the high score in PlayerPrefs
+            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.Save(); // Save the new high score
+        }
+
+        // Save the current score for this game
         PlayerPrefs.SetInt("PlayerScore", score);
-        PlayerPrefs.Save(); // Save to disk
-                            // Load the Game Over scene (or another scene that shows the score)
+        PlayerPrefs.Save(); // Save the score to disk
+
+        // Load the Game Over scene
         SceneManager.LoadScene(2);
     }
+
 
 }
