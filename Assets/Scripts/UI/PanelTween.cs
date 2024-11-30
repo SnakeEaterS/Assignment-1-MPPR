@@ -28,7 +28,7 @@ public class PanelTween : MonoBehaviour
         offScreenPosition = new Vector3(panel.localPosition.x, Screen.height, panel.localPosition.z);
 
         panel.localPosition = offScreenPosition; // Start off-screen
-        ShowPanel();
+        ShowPanel();//tween in panel onstart
     }
 
     // Create a button, with the label Toggle Panel. You need to link the button's
@@ -92,8 +92,8 @@ public class PanelTween : MonoBehaviour
             }
 
             // Custom linear interpolation with modified t based on the tween type
-            float x = start.x + (end.x - start.x) * t; ; // Wrong value - you must add the correct equation to calculate x
-            float y = start.y + (end.y - start.y) * t; ; // Wrong value - you must add the correct equation to calculate y
+            float x = start.x + (end.x - start.x) * t; ; 
+            float y = start.y + (end.y - start.y) * t; ; 
 
             // Set the panel position
             panel.localPosition = new Vector3(x, y, start.z);
