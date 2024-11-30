@@ -6,7 +6,10 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePos;
-    public Transform bullet;
+    public Transform bullet1; // Red bullet
+    public Transform bullet2; // Blue bullet
+    private Transform currentBullet; // Current bullet prefab
+
     public Transform bulletTransform;
     public Transform bulletParent;
     public bool canFire;
@@ -23,6 +26,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main; // Get the main camera
+        currentBullet = bullet1; // Set the default bullet prefab
     }
 
     // Update is called once per frame
@@ -64,13 +68,23 @@ public class Shooting : MonoBehaviour
             fireType = FireType.Snake;
         }
 
+        // Switch bullet prefabs based on key presses
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            currentBullet = bullet2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            currentBullet = bullet1;
+        }
+
         // Handle firing when the mouse button is held
         if (Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
 
             // Spawn the bullet
-            Transform bulletPrefab = Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Transform bulletPrefab = Instantiate(currentBullet, bulletTransform.position, Quaternion.identity);
             if (bulletParent != null)
             {
                 bulletPrefab.SetParent(bulletParent);

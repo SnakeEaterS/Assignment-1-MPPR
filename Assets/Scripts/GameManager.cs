@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int newScore)
     {
         score = newScore;
-        scoreUI.text = score.ToString(); // Update the score UI
+        scoreUI.text = "Score: " + score.ToString(); // Update the score UI
     }
 
 private void Awake()

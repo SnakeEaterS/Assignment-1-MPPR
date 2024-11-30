@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviour
         }
 
         // Destroy the bullet after its lifetime expires
-        Destroy(gameObject, lifeTime);
+        // Destroy(gameObject, lifeTime);
     }
 
     void Update()
@@ -61,21 +61,26 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        // Check if the collided object is an enemy
+        if (collision.CompareTag("Blue Enemy") || collision.CompareTag("Red Enemy")) // If the bullet hits a valid target (red/blue enemy), it will continue
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            if (fireType == Shooting.FireType.Straight)
+            // Check if the bullet's tag color matches the enemy's tag color
+            if ((collision.CompareTag("Red Enemy") && gameObject.CompareTag("Red Bullet")) || (collision.CompareTag("Blue Enemy") && gameObject.CompareTag("Blue Bullet")))
             {
-                int damage1 = 10;
-                enemy.TakeDamage(damage1);
-                Debug.Log($"{collision.gameObject.name} took {damage1} damage from Straight fire. Remaining health: {enemy.health}");
-                Destroy(gameObject);
-            }
-            else
-            {
-                int damage2 = 5;
-                enemy.TakeDamage(damage2);
-                Debug.Log($"{collision.gameObject.name} took {damage2} damage from Snake fire. Remaining health: {enemy.health}");
+                Enemy enemy = collision.GetComponent<Enemy>();
+                if (fireType == Shooting.FireType.Straight)
+                {
+                    int damage1 = 10;
+                    enemy.TakeDamage(damage1);
+                    Debug.Log($"{collision.gameObject.name} took {damage1} damage from Straight fire. Remaining health: {enemy.health}");
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    int damage2 = 5;
+                    enemy.TakeDamage(damage2);
+                    Debug.Log($"{collision.gameObject.name} took {damage2} damage from Snake fire. Remaining health: {enemy.health}");
+                }
             }
         }
     }
