@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupPrefab: {fileID: 3431505612646186357, guid: ab62239bb996e1a44b5f538a94967c88, type: 3}
-  spawnInterval: 10
+  spawnInterval: 15
   powerupLifetime: 2
   xMin: -10
   xMax: 10

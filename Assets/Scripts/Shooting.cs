@@ -108,7 +108,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void LateUpdate() // Checks if the player has picked up a power-up, starts the Power-up coroutine if true
     {
         if (powerUpObtained == true)
         {

@@ -86,7 +86,8 @@ public class BulletScript : MonoBehaviour
 
         else if (collision.CompareTag("Powerup")) // Power up increases firing rate by 2x for 5 seconds
         {
-            shooting.powerUpObtained = true;
+            shooting.powerUpObtained = true; // Sets the power up obtained status to true so it can run the power-up coroutine in the Shooting.cs script
+            // Destroys both the bullet and the power-up
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
