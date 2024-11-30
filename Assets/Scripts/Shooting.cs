@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
 
     public Transform bullet1; // Red bullet
     public Transform bullet2; // Blue bullet
+    public Transform bullet3; // Powerup bullet
     public Transform bulletTransform;
     public Transform bulletParent;
 
@@ -19,6 +20,8 @@ public class Shooting : MonoBehaviour
 
     public bool canFire;
     public bool powerUpObtained = false; // Checks if the player has collected a power-up
+    public bool powerUpActive = false; // Checks if the power-up is currently active
+
     public float timeBetweenFiring;
     public float snakeFrequency = 5f; // Frequency of snake oscillation
     public float snakeAmplitude = 0.5f; // Amplitude of snake oscillation
@@ -75,14 +78,21 @@ public class Shooting : MonoBehaviour
             fireType = FireType.Snake;
         }
 
-        // Switch bullet prefabs based on key presses
+        // Switch bullet type based on key presses
         if (Input.GetKeyDown(KeyCode.E))
         {
-            currentBullet = bullet2;
+            if (!powerUpActive)
+            {
+                currentBullet = bullet2;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            currentBullet = bullet1;
+            if (!powerUpActive)
+            {
+                currentBullet = bullet1;
+
+            }
         }
 
         // Handle firing when the mouse button is held
@@ -117,7 +127,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    // Coroutine to speed up firing rate by 2x for 5 seconds, when a player activates the power-up
+    // Powerup Coroutine: When power-up is active, shoot deadly bullets 1.5x the size of a normal bullet at 2x speed for 5 seconds
     public IEnumerator Powerup()
     {
 
@@ -125,11 +135,14 @@ public class Shooting : MonoBehaviour
         float newShootRate = (currentShootRate / 2);
 
         timeBetweenFiring = newShootRate;
+        currentBullet = bullet3;
 
         // Wait for 5 seconds
         yield return new WaitForSeconds(5f);
 
         // Restore the original firing interval
         timeBetweenFiring = currentShootRate;
+        currentBullet = bullet1; // Falls back to deafult bullet
+        powerUpActive = false;
     }
 }

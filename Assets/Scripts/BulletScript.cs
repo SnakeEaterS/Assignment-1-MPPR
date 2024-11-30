@@ -66,8 +66,14 @@ public class BulletScript : MonoBehaviour
         // Check if the collided object is an enemy
         if (collision.CompareTag("Blue Enemy") || collision.CompareTag("Red Enemy")) // If the bullet hits a valid target (red/blue enemy), it will continue
         {
+            if (gameObject.CompareTag("Powerup")) // If the power-up is currently active, shoots deadly bullets that insta-kills any enemy
+            {
+                // Destroys the enemy instantly and the bullet itself
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
             // Check if the bullet's tag color matches the enemy's tag color
-            if ((collision.CompareTag("Red Enemy") && gameObject.CompareTag("Red Bullet")) || (collision.CompareTag("Blue Enemy") && gameObject.CompareTag("Blue Bullet")))
+            else if ((collision.CompareTag("Red Enemy") && gameObject.CompareTag("Red Bullet")) || (collision.CompareTag("Blue Enemy") && gameObject.CompareTag("Blue Bullet")))
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
                 if (fireType == Shooting.FireType.Straight)
@@ -87,6 +93,7 @@ public class BulletScript : MonoBehaviour
         else if (collision.CompareTag("Powerup")) // Power up increases firing rate by 2x for 5 seconds
         {
             shooting.powerUpObtained = true; // Sets the power up obtained status to true so it can run the power-up coroutine in the Shooting.cs script
+            shooting.powerUpActive = true;
             // Destroys both the bullet and the power-up
             Destroy(gameObject);
             Destroy(collision.gameObject);
