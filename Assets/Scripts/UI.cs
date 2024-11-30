@@ -1,22 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class UI : MonoBehaviour
 {
+    // Public variable to set the wait time in the Inspector
+    public float waitTime = 140f;
+
     public void StartGame()
-        //Starts the game by loading the scene.
     {
+        // Start the coroutine to wait for the specified time before loading the scene
+        StartCoroutine(WaitAndStartGame(waitTime));
+    }
+
+    private IEnumerator WaitAndStartGame(float waitTime)
+    {
+        // Wait for the specified amount of time
+        yield return new WaitForSeconds(waitTime);
+
+        // Load the scene after the delay
         SceneManager.LoadScene(1);
     }
 
     public void ExitGame()
-        //Exits the game.
     {
-        Application.Quit();
+        // Start the coroutine to wait for the specified time before exiting
+        StartCoroutine(WaitAndExitGame(waitTime));
+    }
 
+    private IEnumerator WaitAndExitGame(float waitTime)
+    {
+        // Wait for the specified amount of time before quitting
+        yield return new WaitForSeconds(waitTime);
+
+        // Exits the game
+        Application.Quit();
     }
 }
-
