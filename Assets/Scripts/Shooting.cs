@@ -72,7 +72,6 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             fireType = FireType.Straight;
-            timeBetweenFiring = 0.3f;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
