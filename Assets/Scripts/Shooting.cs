@@ -72,14 +72,12 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             fireType = FireType.Straight;
-            timeBetweenFiring = 0.3f;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (!powerUpActive) // Not allowed to switch firing modes during power-up duration for balancing
             {
                 fireType = FireType.Snake;
-                timeBetweenFiring = 0.1f;
             }
         }
 
