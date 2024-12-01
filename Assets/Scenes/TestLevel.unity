@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet1: {fileID: 996257696017476100, guid: 7e2daed6e4090b9438a7e58c40026a90, type: 3}
   bullet2: {fileID: 996257696017476100, guid: ea078b394628b134fbb16ee43e61b425, type: 3}
-  bullet3: {fileID: 3920987202103569679, guid: fe0bc9b4e507280478034de15875fb70, type: 3}
+  bullet3: {fileID: 996257696017476100, guid: 589c29e4691d964439660c103207f414, type: 3}
   bulletTransform: {fileID: 1007894580}
   bulletParent: {fileID: 2085610534}
   canFire: 1
