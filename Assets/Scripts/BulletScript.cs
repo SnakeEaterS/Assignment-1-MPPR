@@ -47,17 +47,10 @@ public class BulletScript : MonoBehaviour
     {
         if (fireType == Shooting.FireType.Snake)
         {
-            currentTime += Time.deltaTime;
-
-            // Calculate force for snake shot with easing
-            float t = Mathf.Clamp01(currentTime / accelerationTime);
-            float force = Mathf.Lerp(0, maxForce, t * t); // Quadratic easing
-
             // Snake movement
             float oscillation = Mathf.Sin(Time.time * snakeFrequency) * snakeAmplitude;
-            Vector2 snakeVelocity = direction * force + perpendicular * oscillation;
+            Vector2 snakeVelocity = direction * maxForce + perpendicular * oscillation;
             rb.velocity = snakeVelocity;
-
         }
     }
 
