@@ -76,11 +76,8 @@ public class Shooting : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (!powerUpActive) // Not allowed to switch firing modes during power-up duration for balancing
-            {
-                fireType = FireType.Snake;
-                timeBetweenFiring = 0.1f;
-            }
+            fireType = FireType.Snake;
+            timeBetweenFiring = 0.1f;
         }
 
         // Switch bullet type based on key presses
@@ -135,7 +132,6 @@ public class Shooting : MonoBehaviour
     // Powerup Coroutine: When power-up is active, shoot deadly bullets 1.5x the size of a normal bullet at 2x speed for 5 seconds
     public IEnumerator Powerup()
     {
-        fireType = FireType.Straight; // Reset the fire type to straight for balancing
         float currentShootRate = timeBetweenFiring;
         float newShootRate = (currentShootRate / 2);
 
