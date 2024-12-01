@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ColorInterpolation : MonoBehaviour
+public class ColorInterpolation : MonoBehaviour // Color Interpolation for Power-up & Power-up Bullet
 {
     new Renderer renderer;
 

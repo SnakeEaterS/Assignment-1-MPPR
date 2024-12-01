@@ -32,7 +32,7 @@ public class PowerupSpawner : MonoBehaviour
             float randomY = Random.Range(yMin, yMax);
 
             // Create a spawn position using the random X and Y values
-            Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
+            Vector3 spawnPosition = new Vector3(randomX, randomY, -1);
 
             // Instantiate the powerup at the random position
             GameObject powerup = Instantiate(powerupPrefab, spawnPosition, Quaternion.identity);
